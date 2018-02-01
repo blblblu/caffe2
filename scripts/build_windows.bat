@@ -13,9 +13,9 @@ if NOT DEFINED CMAKE_BUILD_TYPE (
   set CMAKE_BUILD_TYPE=Release
 )
 
-if NOT DEFINED USE_CUDA (
-  set USE_CUDA=OFF
-)
+::if NOT DEFINED USE_CUDA (
+::  set USE_CUDA=OFF
+::)
 
 if NOT DEFINED CMAKE_GENERATOR (
   if DEFINED APPVEYOR_BUILD_WORKER_IMAGE (
@@ -29,8 +29,8 @@ if NOT DEFINED CMAKE_GENERATOR (
       exit /b
     )
   ) else (
-    :: In default we use win64 VS 2017.
-    set CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
+    :: In default we use win64 VS 2015, because CUDA 9 doesn't yet support VS 2017.
+    set CMAKE_GENERATOR="Visual Studio 14 2015 Win64"
   )
 )
 
@@ -51,7 +51,7 @@ cmake .. ^
   -DBUILD_TEST=OFF ^
   -DBUILD_SHARED_LIBS=OFF ^
   -DCMAKE_BUILD_TYPE=%CMAKE_BUILD_TYPE% ^
-  -DUSE_CUDA=%USE_CUDA% ^
+  -DUSE_CUDA=ON ^
   -DUSE_NNPACK=OFF ^
   -DUSE_GLOG=OFF ^
   -DUSE_GFLAGS=OFF ^

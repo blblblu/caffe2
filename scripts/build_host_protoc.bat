@@ -33,8 +33,8 @@ if NOT DEFINED CMAKE_GENERATOR (
       exit /b
     )
   ) else (
-  	:: In default we use win64 VS 2017.
-  	set CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
+  	:: In default we use win64 VS 2015 because CUDA 9 doesn't yet support VS 2017.
+  	set CMAKE_GENERATOR="Visual Studio 14 2015 Win64"
   )
 )
 
